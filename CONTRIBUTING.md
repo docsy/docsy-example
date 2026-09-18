@@ -113,10 +113,39 @@ npm run local -- serve
 The `local` prefix runs the script against the sibling Docsy, and the server
 watches it, so theme edits hot-reload.
 
+### Workflow security analysis
+
+`.github/workflows/zizmor.yaml` runs [zizmor][] over this repo's workflows in
+its pedantic persona (security audits plus workflow hygiene) on every PR, on
+pushes to `main`, and weekly, uploading the results to the repository's Security
+tab as code-scanning alerts. The weekly run refreshes the online audits, which
+check pinned actions against published advisories.
+
+- The job passes whatever it finds: findings are alerts to triage, not a merge
+  gate. Blocking, if any, is a repository-settings decision (a code-scanning
+  rule in the `main` ruleset), not something this workflow does.
+- The workflow calls the [OpenTelemetry shared workflow][otel-zizmor] at a
+  pinned commit; that workflow pins the zizmor action, which pins the zizmor
+  image by digest, so the scanner moves only when the pin here does. Bump it
+  like any other action pin: review the chain and honor the release cooldown.
+- CI-only by design: the repo carries no tooling dependency for it. For a
+  comparable local run, with `GH_TOKEN` set for the online audits, where
+  _`VERSION`_ is the zizmor release the shared workflow currently pins:
+
+  ```bash
+  uvx zizmor@VERSION --persona=pedantic .github/workflows
+  ```
+
+- `security-events: write` sits alone in this workflow, away from the job that
+  installs and builds.
+
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/google/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
+[otel-zizmor]:
+  https://github.com/open-telemetry/shared-workflows/blob/main/zizmor/README.md
+[zizmor]: https://docs.zizmor.sh/
 
 <!-- cSpell:ignore hugo docsy -->
