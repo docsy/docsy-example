@@ -113,6 +113,17 @@ npm run local -- serve
 The `local` prefix runs the script against the sibling Docsy, and the server
 watches it, so theme edits hot-reload.
 
+### Merge requirements
+
+`main` is protected by a repository ruleset: changes land only through pull
+requests, with linear history, no force pushes or deletions. A PR needs one
+approving review from a member of the `docsy/maintainers` team, and its zizmor
+analysis must be clean at the ruleset's thresholds (see
+[Workflow security analysis](#workflow-security-analysis)). Maintainers (the
+Maintain role or higher) can bypass the review requirement for a PR through
+**Bypass rules and merge** (`gh pr merge --admin`); the bypass is logged in the
+ruleset's insights.
+
 ### Workflow security analysis
 
 `.github/workflows/zizmor.yaml` runs [zizmor][] over this repo's workflows in
@@ -121,8 +132,9 @@ pushes to `main`, and weekly, so the online audits catch advisories published
 against already-pinned actions. Results upload to the repository's Security tab
 as code-scanning alerts.
 
-- The job passes whatever it finds; findings are alerts to triage. Blocking, if
-  any, would come from a code-scanning rule in a ruleset on `main`.
+- The job passes whatever it finds; findings are alerts to triage. Blocking
+  comes from the `main` ruleset's code-scanning rule: a security alert of high
+  or higher severity, or an error-level alert, on the PR's changed lines.
 - The workflow calls the [OpenTelemetry shared workflow][otel-zizmor] at a
   pinned commit; that workflow pins the zizmor action, which pins the zizmor
   image by digest, so the scanner moves only when the pin here does. Review the
