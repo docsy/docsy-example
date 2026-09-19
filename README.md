@@ -66,3 +66,5 @@ For build and preview problems, see the user guide's [prerequisites][] and
 [troubleshooting]: https://www.docsy.dev/docs/get-started/troubleshooting/
 
 <!-- cSpell:ignore hugo docsy -->
+
+<!-- required_reviewers probe; PR will be closed unmerged -->
