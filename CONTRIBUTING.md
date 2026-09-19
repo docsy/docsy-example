@@ -122,7 +122,7 @@ against already-pinned actions. Results upload to the repository's Security tab
 as code-scanning alerts.
 
 - The job passes whatever it finds; findings are alerts to triage. Blocking, if
-  any, comes from a code-scanning rule in a ruleset on `main`.
+  any, would come from a code-scanning rule in a ruleset on `main`.
 - The workflow calls the [OpenTelemetry shared workflow][otel-zizmor] at a
   pinned commit; that workflow pins the zizmor action, which pins the zizmor
   image by digest, so the scanner moves only when the pin here does. Review the
@@ -132,7 +132,7 @@ as code-scanning alerts.
   zizmor version the workflow's latest run logs (its `zizmor vX.Y.Z` banner):
 
   ```bash
-  uvx zizmor@VERSION --persona=pedantic .github/workflows
+  uvx zizmor@VERSION --persona=pedantic .
   ```
 
 - `security-events: write` sits alone in this workflow, away from the job that
