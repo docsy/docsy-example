@@ -122,7 +122,7 @@ against already-pinned actions. Results upload to the repository's Security tab
 as code-scanning alerts.
 
 - The job passes whatever it finds; findings are alerts to triage. Blocking, if
-  any, would come from a code-scanning rule in a ruleset on `main`.
+  any, comes from a code-scanning rule in a ruleset on `main`.
 - The workflow calls the [OpenTelemetry shared workflow][otel-zizmor] at a
   pinned commit; that workflow pins the zizmor action, which pins the zizmor
   image by digest, so the scanner moves only when the pin here does. Review the
@@ -137,6 +137,15 @@ as code-scanning alerts.
 
 - `security-events: write` sits alone in this workflow, away from the job that
   installs and builds.
+
+### Merging to `main`
+
+The `main` branch ruleset requires one approving review from a code owner:
+`.github/CODEOWNERS` names the `@docsy/maintainers` team for every path, so team
+membership is the review boundary, and a workflow's approval never satisfies the
+rule. The team holds an explicit Maintain grant on the repo; without one GitHub
+silently ignores a CODEOWNERS team. The Maintain role and above can bypass the
+review rule (**Bypass rules and merge**, or `gh pr merge --admin`).
 
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
