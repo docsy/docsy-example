@@ -54,7 +54,7 @@ For build and preview problems, see the user guide's [prerequisites][] and
   https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-dart-sass
 [Docsy user guide]: https://docsy.dev/docs
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
-[Docsy]: https://github.com/google/docsy
+[Docsy]: https://github.com/docsy/docsy
 [maintainer notes]: CONTRIBUTING.md#maintainer-notes
 [example.docsy.dev]: https://example.docsy.dev
 [Hugo theme module]: https://gohugo.io/hugo-modules/
