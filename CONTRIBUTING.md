@@ -10,10 +10,8 @@ Agreement][cla] in the Docsy contribution guidelines.
 
 ## Code reviews
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+For code-review requirements, see the [Docsy contribution
+guidelines][code-reviews].
 
 ## Community Guidelines
 
@@ -108,24 +106,25 @@ watches it, so theme edits hot-reload.
 
 ### Merge requirements
 
-Same as for Docsy ([Merge requirements][] in the maintainer notes), enforced by
+For merge requirements, see the [Docsy maintainer notes][Merge requirements] and
 this repo's [main ruleset][].
 
 ### Workflow security analysis
 
-Same as for Docsy: see [Workflow security analysis][] in the maintainer notes.
+For workflow security analysis, see the [Docsy maintainer
+notes][Workflow security analysis].
 
+<!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
-[cla]:
-  https://main--docsydocs.netlify.app/docs/contributing/#contributor-license-agreement
+[cla]: https://main--docsydocs.netlify.app/docs/contributing/#contributor-license-agreement
+[code-reviews]: https://main--docsydocs.netlify.app/docs/contributing/#code-reviews
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
-[Merge requirements]:
-  https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
-[Workflow security analysis]:
-  https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
+[Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
+[Workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
+<!-- prettier-ignore-end -->
 
 <!-- cSpell:ignore hugo docsy -->
