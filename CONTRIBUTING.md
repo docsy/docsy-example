@@ -5,15 +5,8 @@ just a few small guidelines you need to follow.
 
 ## Contributor License Agreement
 
-Contributions to this project must be accompanied by a Contributor License
-Agreement. You (or your employer) retain the copyright to your contribution;
-this simply gives us permission to use and redistribute your contributions as
-part of the project. Head over to <https://cla.developers.google.com/> to see
-your current agreements on file or to sign a new one.
-
-You generally only need to submit a CLA once, so if you've already submitted one
-(even if it was for a different project), you probably don't need to do it
-again.
+Contributions require the same CLA as Docsy itself: see [Contributor License
+Agreement][cla] in the Docsy contribution guidelines.
 
 ## Code reviews
 
@@ -115,48 +108,24 @@ watches it, so theme edits hot-reload.
 
 ### Merge requirements
 
-`main` is protected by a repository ruleset: changes land only through pull
-requests, with linear history, no force pushes or deletions. A PR needs one
-approving review from a member of the `docsy/maintainers` team, and its zizmor
-analysis must be clean at the ruleset's thresholds (see
-[Workflow security analysis](#workflow-security-analysis)). Maintainers (the
-Maintain role or higher) can bypass the review requirement for a PR through
-**Bypass rules and merge** (`gh pr merge --admin`); the bypass is logged in the
-ruleset's insights.
+Same as for Docsy ([Merge requirements][] in the maintainer notes), enforced by
+this repo's [main ruleset][].
 
 ### Workflow security analysis
 
-`.github/workflows/zizmor.yaml` runs [zizmor][] over this repo's workflows in
-its pedantic persona (security audits plus workflow hygiene) on every PR, on
-pushes to `main`, and weekly, so the online audits catch advisories published
-against already-pinned actions. Results upload to the repository's Security tab
-as code-scanning alerts.
-
-- The job passes whatever it finds; findings are alerts to triage. Blocking
-  comes from the `main` ruleset's code-scanning rule: a security alert of high
-  or higher severity, or an error-level alert, on the PR's changed lines.
-- The workflow calls the [OpenTelemetry shared workflow][otel-zizmor] at a
-  pinned commit; that workflow pins the zizmor action, which pins the zizmor
-  image by digest, so the scanner moves only when the pin here does. Review the
-  chain at each bump.
-- CI-only by design: the repo carries no tooling dependency for it. For a local
-  run, with `GH_TOKEN` set for the online audits, where _`VERSION`_ is the
-  zizmor version the workflow's latest run logs (its `zizmor vX.Y.Z` banner):
-
-  ```bash
-  uvx zizmor@VERSION --persona=pedantic .
-  ```
-
-- `security-events: write` sits alone in this workflow, away from the job that
-  installs and builds.
+Same as for Docsy: see [Workflow security analysis][] in the maintainer notes.
 
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
+[cla]:
+  https://main--docsydocs.netlify.app/docs/contributing/#contributor-license-agreement
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/google/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
-[otel-zizmor]:
-  https://github.com/open-telemetry/shared-workflows/blob/main/zizmor/README.md
-[zizmor]: https://docs.zizmor.sh/
+[main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
+[Merge requirements]:
+  https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
+[Workflow security analysis]:
+  https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
 
 <!-- cSpell:ignore hugo docsy -->
