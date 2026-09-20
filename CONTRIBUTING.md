@@ -4,8 +4,9 @@ See the [contribution guidelines][].
 
 ## Maintainer notes
 
-[Merge requirements][] (enforced by the [main ruleset][]) and [workflow security
-analysis][] are project-wide; the sections below are specific to this repo.
+[Merge requirements][] and [workflow security analysis][] are project-wide (this
+repo's [main ruleset][] mirrors Docsy's); the sections below are specific to
+this repo.
 
 ### Dependency updates
 
