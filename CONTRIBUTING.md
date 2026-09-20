@@ -119,7 +119,7 @@ Same as for Docsy: see [Workflow security analysis][] in the maintainer notes.
 [cla]:
   https://main--docsydocs.netlify.app/docs/contributing/#contributor-license-agreement
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
-[Docsy]: https://github.com/google/docsy
+[Docsy]: https://github.com/docsy/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
