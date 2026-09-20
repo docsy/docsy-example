@@ -1,24 +1,11 @@
 # How to Contribute
 
-We'd love to accept your patches and contributions to this project. There are
-just a few small guidelines you need to follow.
-
-## Contributor License Agreement
-
-Contributions require the same CLA as Docsy itself: see [Contributor License
-Agreement][cla] in the Docsy contribution guidelines.
-
-## Code reviews
-
-For code-review requirements, see the [Docsy contribution
-guidelines][code-reviews].
-
-## Community Guidelines
-
-This project follows
-[Google's Open Source Community Guidelines](https://opensource.google.com/conduct/).
+See the [contribution guidelines][].
 
 ## Maintainer notes
+
+[Merge requirements][] (enforced by the [main ruleset][]) and [workflow security
+analysis][] are project-wide; the sections below are specific to this repo.
 
 ### Dependency updates
 
@@ -104,27 +91,16 @@ npm run local -- serve
 The `local` prefix runs the script against the sibling Docsy, and the server
 watches it, so theme edits hot-reload.
 
-### Merge requirements
-
-For merge requirements, see the [Docsy maintainer notes][Merge requirements] and
-this repo's [main ruleset][].
-
-### Workflow security analysis
-
-For workflow security analysis, see the [Docsy maintainer
-notes][Workflow security analysis].
-
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
-[cla]: https://main--docsydocs.netlify.app/docs/contributing/#contributor-license-agreement
-[code-reviews]: https://main--docsydocs.netlify.app/docs/contributing/#code-reviews
+[contribution guidelines]: https://main--docsydocs.netlify.app/docs/contributing/
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
 [Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
-[Workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
+[workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
 <!-- prettier-ignore-end -->
 
 <!-- cSpell:ignore hugo docsy -->
