@@ -5,8 +5,7 @@ See the [contribution guidelines][].
 ## Maintainer notes
 
 [Merge requirements][] and [workflow security analysis][] are project-wide (this
-repo's [main ruleset][] mirrors Docsy's); the sections below are specific to
-this repo.
+repo's [main ruleset][] mirrors Docsy's).
 
 ### Dependency updates
 
