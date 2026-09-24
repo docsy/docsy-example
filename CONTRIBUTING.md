@@ -16,12 +16,10 @@ repo's own settings and reasons:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
-- `hugo-extended` updates stay off: its `allowScripts` approval is
-  version-coupled (see [Update Hugo](#update-hugo)).
-- Bootstrap and Font Awesome updates route through the theme
-  (`packages/hugoautogen` is regenerated from the theme, reverting any direct
-  bump). A Dependabot security PR may still bump these directly: close it and
-  route the fix through a theme update.
+- Bootstrap and Font Awesome updates arrive through the theme:
+  `packages/hugoautogen` is regenerated from it, reverting any direct bump. A
+  Dependabot security PR that bumps them directly: close it and route the fix
+  through a theme update.
 - `.npmrc` sets no `min-release-age`: Renovate's cooldown is the only one here,
   and Docsy's urgent-fix override does not apply.
 - No audit test guards the action pin comments here: the PR reviewer checks
