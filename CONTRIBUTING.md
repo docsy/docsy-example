@@ -14,7 +14,6 @@ family settings and their rationale, the requirements on action pins, and the
 checks before merging an action bump, see Docsy's [Dependency updates][]. This
 repo's own settings and reasons:
 
-- `timezone`: the Sunday schedule reads in Montreal time.
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
 - `hugo-extended` is version-pinned and coupled to its `allowScripts` approval
