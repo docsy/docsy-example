@@ -20,8 +20,6 @@ repo's own settings and reasons:
   `packages/hugoautogen` is regenerated from it, reverting any direct bump. A
   Dependabot security PR that bumps them directly: close it and route the fix
   through a theme update.
-- `.npmrc` sets no `min-release-age`: Renovate's cooldown is the only one here,
-  and Docsy's urgent-fix override does not apply.
 - No audit test guards the action pin comments here: the PR reviewer checks
   them.
 
