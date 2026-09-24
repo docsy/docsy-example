@@ -9,13 +9,10 @@ repo's [main ruleset][] mirrors Docsy's).
 
 ### Dependency updates
 
-Renovate opens version-update PRs, configured in `renovate.jsonc`. The family
-settings and their rationale are Docsy's ([Dependency updates][]): the 7-day
-minimum release age with the npm preset's shorter cooldown excluded, lock
-maintenance off, the Sunday schedule, patch and minor grouping, and GitHub
-Actions bumps as individual Release-dated PRs whose pin comments name a full
-version, with the checks to run before merging one. This repo's own settings and
-reasons:
+Renovate opens version-update PRs, configured in `renovate.jsonc`. For the
+family settings and their rationale, the requirements on action pins, and the
+checks before merging an action bump, see Docsy's [Dependency updates][]. This
+repo's own settings and reasons:
 
 - `timezone`: the Sunday schedule reads in Montreal time.
 - `gomod` off: the Docsy theme pin is updated manually; see
@@ -26,9 +23,9 @@ reasons:
   (`packages/hugoautogen` is regenerated from the theme, reverting any direct
   bump). A Dependabot security PR may still bump these directly: close it and
   route the fix through a theme update.
-- No audit test guards the action pin comments here: review does. An action
-  added to a workflow must publish GitHub Releases, or Renovate never proposes
-  its updates.
+- `.npmrc` sets no `min-release-age`: Renovate's cooldown is the only one here,
+  and the notes' override for an urgent npm fix does not apply.
+- No audit test guards the action pin comments here: review does.
 
 ### Deploy logs
 
