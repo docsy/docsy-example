@@ -9,29 +9,26 @@ repo's [main ruleset][] mirrors Docsy's).
 
 ### Dependency updates
 
-Renovate opens version-update PRs, created on Sundays, configured in
-`renovate.json5`. Settings rationale:
+Renovate opens version-update PRs, configured in `renovate.jsonc`. The family
+settings and their rationale are Docsy's ([Dependency updates][]): the 7-day
+minimum release age with the npm preset's shorter cooldown excluded, lock
+maintenance off, the Sunday schedule, patch and minor grouping, and GitHub
+Actions bumps as individual Release-dated PRs whose pin comments name a full
+version, with the checks to run before merging one. This repo's own settings and
+reasons:
 
-- `ignorePresets`: the preset's 3-day npm cooldown would override this repo's
-  7-day `minimumReleaseAge`. Caution: this exclusion silently stops working if
-  the preset is renamed upstream.
-- `lockFileMaintenance` off: wholesale lock re-resolves would churn the
-  committed lockfile; transitive security fixes arrive alert-driven instead.
+- `timezone`: the Sunday schedule reads in Montreal time.
 - `gomod` off: the Docsy theme pin is updated manually; see
-  [Upgrade Docsy](#upgrade-docsy). All other detected managers are active.
-- Package rules:
-  - Patch and minor updates are each grouped into a single PR per wave, to cut
-    review overhead. Majors stay individual, except families that Renovate's
-    presets keep in lockstep (for example, the GitHub artifact actions).
-  - `hugo-extended` is version-pinned and coupled to its `allowScripts` approval
-    (see [Update Hugo](#update-hugo)).
-  - Bootstrap and Font Awesome updates route through the theme
-    (`packages/hugoautogen` is regenerated from the theme, reverting any direct
-    bump). A Dependabot security PR may still bump these directly: close it and
-    route the fix through a theme update.
-
-Renovate's vulnerability-alert PRs stay on (immediate, cooldown-exempt), beside
-GitHub's Dependabot security updates; a rare duplicate PR is accepted.
+  [Upgrade Docsy](#upgrade-docsy).
+- `hugo-extended` is version-pinned and coupled to its `allowScripts` approval
+  (see [Update Hugo](#update-hugo)).
+- Bootstrap and Font Awesome updates route through the theme
+  (`packages/hugoautogen` is regenerated from the theme, reverting any direct
+  bump). A Dependabot security PR may still bump these directly: close it and
+  route the fix through a theme update.
+- No audit test guards the action pin comments here: review does. An action
+  added to a workflow must publish GitHub Releases, or Renovate never proposes
+  its updates.
 
 ### Deploy logs
 
@@ -94,6 +91,7 @@ watches it, so theme edits hot-reload.
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
 [contribution guidelines]: https://main--docsydocs.netlify.app/docs/contributing/
+[Dependency updates]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#dependency-updates
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
 [hugo-extended]: https://www.npmjs.com/package/hugo-extended
