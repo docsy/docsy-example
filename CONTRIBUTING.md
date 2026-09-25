@@ -40,14 +40,14 @@ generated package's name, otherwise derived from the checkout-directory name.
 The Docsy-update scripts run it as their post phase, and CI reruns it to catch
 drift. If a theme update changes either file, commit the result. Installs
 themselves declare no lifecycle hooks (guarded by `tests/npm-scripts.test.mjs`),
-so neither install mode runs root-package code. A plain `npm install` resolves
-and may rewrite the lock.
+so installs run no root-package code. A plain `npm install` resolves and may
+rewrite the lock.
 
 ### Install configuration
 
 `.npmrc` follows Docsy's, with two exceptions:
 
-- Docsy's `@docsy:registry` pin is publisher-only.
+- No `@docsy:registry` pin: this repo publishes no packages.
 - Docsy sets `ignore-scripts=true`; this repo does not. npm checks
   `allowScripts` approvals only on an install that would run scripts. With every
   install script-free, no check runs anywhere, and a hugo-extended bump with no
@@ -55,7 +55,9 @@ and may rewrite the lock.
   is lost. Docsy keeps the property under `ignore-scripts=true` because its
   install re-enables scripts for hugo-extended alone, in a rebuild step this
   repo does not carry; here, CI's `npm ci` is the script-enabled install where
-  the check runs.
+  the check runs. So is a plain `npm install`, which therefore runs
+  hugo-extended's installer and needs network access; `npm run install:safe`
+  runs no scripts.
 
 ### Upgrade Docsy
 
@@ -79,9 +81,8 @@ enforces it: an unapproved bump fails `npm ci`. The two-step flow that keeps the
 approval current is Docsy's ([Officially supported Hugo version][]). What
 differs here:
 
-- The bump is the plain command,
-  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
-  there is no `update:hugo` script.
+- No `update:hugo` script; the bump is
+  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`.
 - `npm run approve:hugo` syncs the tree, approves, and regenerates the theme
   manifest; there is no audit to re-run and no rebuild step.
 

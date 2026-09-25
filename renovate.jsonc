@@ -5,8 +5,7 @@
   // CONTRIBUTING.md#dependency-updates
   "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "lockFileMaintenance": { "enabled": false },
-  "timezone": "America/Montreal",
-  "schedule": ["* * * * 0"], // Sunday
+  "schedule": ["* * * * 0"], // Sunday (UTC)
   "labels": ["dependencies"],
   "gomod": { "enabled": false },
   "minimumReleaseAge": "7 days",
