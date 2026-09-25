@@ -49,7 +49,6 @@
     "update:docsy:main": "hugo mod get -u github.com/google/docsy/theme@main && npm run _update:docsy:post",
     "update:docsy:mod": "hugo mod get -u github.com/google/docsy/theme && npm run _update:docsy:post",
     "update:docsy:pack": "hugo mod npm pack && npm pkg set 'name=\"@docsy/hugoautogen\"' private=true --json --prefix packages/hugoautogen && npm install --ignore-scripts",
-    "update:hugo": "npm install --save-dev --save-exact --ignore-scripts hugo-extended@latest",
     "update:main": "npm run update:packages && npm run update:docsy:main",
     "update:packages": "npm-check-updates -u -x hugo-extended",
     "update": "npm run update:packages && npm run update:docsy:mod"
