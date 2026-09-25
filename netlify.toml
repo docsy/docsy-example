@@ -10,8 +10,8 @@ GO_VERSION = "1.22.2"
 # Constrain Netlify's automatic npm install to resolution only: no tree
 # writes, no scripts; _netlify:prepare runs the real, lock-exact install. If
 # NPM_FLAGS ever stops being honored, the auto-install runs for real:
-# strict-allow-scripts (.npmrc) still gates its scripts, and the clean-tree
-# bracket in _netlify:prepare flags its tree writes. The committed lockfile
+# ignore-scripts (.npmrc) still skips its scripts, and the clean-tree bracket
+# in _netlify:prepare flags its tree writes. The committed lockfile
 # and hugoautogen manifest cover the build's needs; the hugo binary
 # self-installs at first use.
 NPM_FLAGS = "--dry-run --ignore-scripts"

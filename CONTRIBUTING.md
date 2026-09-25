@@ -10,17 +10,17 @@ repo's [main ruleset][] mirrors Docsy's).
 ### Dependency updates
 
 Renovate opens version-update PRs, configured in `renovate.jsonc`. For the
-family settings and their rationale, the requirements on action pins, and the
-checks before merging an action bump, see Docsy's [Dependency updates][]. This
-repo's own settings and reasons:
+settings shared with Docsy and their rationale, the action-pin requirements, and
+the merge checks, see Docsy's [Dependency updates][]. What differs here:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
+- `hugo-extended` off: the pin follows Docsy's; see [Update Hugo](#update-hugo).
 - Bootstrap and Font Awesome updates arrive through the theme:
-  `packages/hugoautogen` is regenerated from it, reverting any direct bump. A
-  Dependabot security PR that bumps them directly: close it and route the fix
-  through a theme update.
-- No audit test guards the action pin comments here: the PR reviewer checks
+  `packages/hugoautogen` is regenerated from it, reverting any direct bump. If a
+  Dependabot security PR bumps them directly, close it and route the fix through
+  a theme update.
+- No audit test guards the action-pin comments here; the PR reviewer checks
   them.
 
 ### Deploy logs
@@ -42,8 +42,7 @@ The Docsy-update scripts run it as their post phase, and CI reruns it to catch
 drift. If a theme update changes either file, commit the result. Installs
 themselves declare no lifecycle hooks (guarded by `tests/npm-scripts.test.mjs`),
 so neither install mode runs root-package code; `install:safe` remains the
-lock-exact, script-free path, while a plain `npm install` resolves and may
-rewrite the lock.
+lock-exact path, while a plain `npm install` resolves and may rewrite the lock.
 
 ### Upgrade Docsy
 
@@ -66,7 +65,12 @@ release, then run `npm run approve:hugo`: script-enabled installs fail until the
 new version is approved. The approval gates the install script only (the hugo
 binary self-installs at first use), so don't run builds between the two steps.
 Automated update PRs skip hugo-extended version bumps for the same reason,
-except security updates, which fail CI until approved via `approve:hugo`.
+except security updates, which fail CI until approved via `approve:hugo`. A
+release under seven days old is held by the npm cooldown (`min-release-age`,
+`.npmrc`); to take it anyway, run the install with a per-invocation override,
+set no lower than the release's age requires, for example
+`NPM_CONFIG_MIN_RELEASE_AGE=3 npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`
+(`update:hugo` takes no version argument).
 
 ### Develop against a local Docsy
 
