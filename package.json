@@ -25,7 +25,7 @@
     "_netlify:prepare": "npm run -s _is:clean && npm run install:safe && npm run -s _is:clean",
     "_serve": "npm run _hugo-dev -- --minify serve --renderToMemory",
     "_update:docsy:post": "hugo mod tidy && npm run update:docsy:pack",
-    "approve:hugo": "npm run install:safe && npm approve-scripts hugo-extended && npm run update:docsy:pack",
+    "approve:hugo": "npm run install:safe && npm approve-scripts --allow-scripts-pin hugo-extended && npm run update:docsy:pack",
     "build:preview": "npm run _hugo-dev -- --minify --baseURL \"${DEPLOY_PRIME_URL:-/}\"",
     "build:production": "npm run _hugo -- --minify",
     "build": "npm run _build -- ",

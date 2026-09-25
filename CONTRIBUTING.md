@@ -11,14 +11,14 @@ repo's [main ruleset][] mirrors Docsy's).
 
 For the Renovate settings shared with Docsy and their rationale, the action-pin
 requirements, and the merge checks, see Docsy's [Dependency updates][]. What
-differs here (config: `renovate.jsonc`):
+differs in `renovate.jsonc`:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
 - Bootstrap and Font Awesome updates arrive through the theme:
   `packages/hugoautogen` is regenerated from it, reverting any direct bump. If a
   Dependabot security PR bumps them directly, close it and route the fix through
-  a theme update.
+  a theme update ([Upgrade Docsy](#upgrade-docsy)).
 - No audit test guards the action-pin comments here; the PR reviewer checks
   them.
 
@@ -49,15 +49,15 @@ rewrite the lock.
 
 - No `@docsy:registry` pin: this repo publishes no packages.
 - Docsy sets `ignore-scripts=true`; this repo does not. npm checks
-  `allowScripts` approvals only on an install that would run scripts. With every
-  install script-free, no check runs anywhere, and a hugo-extended bump with no
-  approval on record merges green: the property in [Update Hugo](#update-hugo)
-  is lost. Docsy keeps the property under `ignore-scripts=true` because its
-  install re-enables scripts for hugo-extended alone, in a rebuild step this
-  repo does not carry; here, CI's `npm ci` is the script-enabled install where
-  the check runs. So is a plain `npm install`, which therefore runs
-  hugo-extended's installer and needs network access; `npm run install:safe`
-  runs no scripts.
+  `allowScripts` approvals only on an install that would run scripts. If this
+  repo set `ignore-scripts=true`, no check would run anywhere and a
+  hugo-extended bump with no approval on record would merge green: the property
+  in [Update Hugo](#update-hugo) would be lost. Docsy keeps the property under
+  `ignore-scripts=true` because its install re-enables scripts for hugo-extended
+  alone, in a rebuild step this repo does not carry; here, CI's `npm ci` is the
+  script-enabled install where the check runs. So is a plain `npm install`,
+  which therefore runs hugo-extended's installer and needs network access;
+  `npm run install:safe` runs no scripts.
 
 ### Upgrade Docsy
 
@@ -81,10 +81,15 @@ enforces it: an unapproved bump fails `npm ci`. The two-step flow that keeps the
 approval current is Docsy's ([Officially supported Hugo version][]). What
 differs here:
 
+- The pin tracks Docsy's officially supported version, not an independent
+  latest; Renovate does not propose hugo-extended bumps.
 - No `update:hugo` script; the bump is
-  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`.
-- `npm run approve:hugo` syncs the tree, approves, and regenerates the theme
-  manifest; there is no audit to re-run and no rebuild step.
+  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`. A
+  release younger than the npm cooldown needs `NPM_CONFIG_MIN_RELEASE_AGE` set
+  to its age on that command.
+- `npm run approve:hugo` has no audit to re-run and no rebuild step; it syncs
+  the tree first, then approves and regenerates the manifest
+  ([Lockfile and generated manifest](#lockfile-and-generated-manifest)).
 
 ### Develop against a local Docsy
 
