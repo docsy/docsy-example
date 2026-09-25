@@ -43,6 +43,20 @@ themselves declare no lifecycle hooks (guarded by `tests/npm-scripts.test.mjs`),
 so neither install mode runs root-package code. A plain `npm install` resolves
 and may rewrite the lock.
 
+### Install configuration
+
+`.npmrc` follows Docsy's, with two exceptions:
+
+- Docsy's `@docsy:registry` pin is publisher-only.
+- Docsy sets `ignore-scripts=true`; this repo does not. npm checks
+  `allowScripts` approvals only on an install that would run scripts. With every
+  install script-free, no check runs anywhere, and a hugo-extended bump with no
+  approval on record merges green: the property in [Update Hugo](#update-hugo)
+  is lost. Docsy keeps the property under `ignore-scripts=true` because its
+  install re-enables scripts for hugo-extended alone, in a rebuild step this
+  repo does not carry; here, CI's `npm ci` is the script-enabled install where
+  the check runs.
+
 ### Upgrade Docsy
 
 Update Docsy to the latest tagged release:
@@ -59,18 +73,17 @@ npm run update:docsy:main
 
 ### Update Hugo
 
-The flow is Docsy's ([Officially supported Hugo version][]). What differs here:
+hugo-extended's installer downloads and executes a binary, so every version that
+may run it here carries a recorded maintainer approval (`allowScripts`), and CI
+enforces it: an unapproved bump fails `npm ci` (`strict-allow-scripts`, in
+`.npmrc`). The two-step flow that keeps the approval current is Docsy's
+([Officially supported Hugo version][]). What differs here:
 
 - The bump is the plain command,
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   there is no `update:hugo` script.
 - `npm run approve:hugo` syncs the tree, approves, and regenerates the theme
   manifest; there is no audit to re-run and no rebuild step.
-- `.npmrc` leaves `ignore-scripts` unset, unlike Docsy's: npm checks the
-  `allowScripts` approval only on an install that would run scripts, so CI's
-  `npm ci` must be one for an unapproved hugo-extended bump to fail CI. Docsy
-  can set it because its install re-enables scripts for hugo-extended alone;
-  this repo has no such step.
 
 ### Develop against a local Docsy
 
