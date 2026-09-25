@@ -9,9 +9,9 @@ repo's [main ruleset][] mirrors Docsy's).
 
 ### Dependency updates
 
-Renovate opens version-update PRs, configured in `renovate.jsonc`. For the
-settings shared with Docsy and their rationale, the action-pin requirements, and
-the merge checks, see Docsy's [Dependency updates][]. What differs here:
+For the Renovate settings shared with Docsy and their rationale, the action-pin
+requirements, and the merge checks, see Docsy's [Dependency updates][]. What
+differs here (config: `renovate.jsonc`):
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
@@ -40,8 +40,8 @@ generated package's name, otherwise derived from the checkout-directory name.
 The Docsy-update scripts run it as their post phase, and CI reruns it to catch
 drift. If a theme update changes either file, commit the result. Installs
 themselves declare no lifecycle hooks (guarded by `tests/npm-scripts.test.mjs`),
-so neither install mode runs root-package code; `install:safe` remains the
-lock-exact path, while a plain `npm install` resolves and may rewrite the lock.
+so neither install mode runs root-package code. A plain `npm install` resolves
+and may rewrite the lock.
 
 ### Upgrade Docsy
 
@@ -61,12 +61,13 @@ npm run update:docsy:main
 
 The flow is Docsy's ([Officially supported Hugo version][]). What differs here:
 
-- `npm run update:hugo` pins the newest release the npm cooldown admits;
-  `--hugo=X.Y.Z` names one.
-- `npm run approve:hugo` approves the version and regenerates the theme
+- The bump is the plain command,
+  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
+  there is no `update:hugo` script.
+- `npm run approve:hugo` syncs the tree, approves, and regenerates the theme
   manifest; there is no audit to re-run and no rebuild step.
-- The approval gate fires on CI's `npm ci`, the one install here that runs
-  scripts; so `.npmrc` sets no `ignore-scripts`, unlike Docsy's.
+- CI's `npm ci` runs install scripts, which the approval gate needs; so `.npmrc`
+  leaves `ignore-scripts` unset, unlike Docsy's.
 
 ### Develop against a local Docsy
 
