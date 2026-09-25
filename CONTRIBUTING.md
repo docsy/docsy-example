@@ -66,8 +66,11 @@ The flow is Docsy's ([Officially supported Hugo version][]). What differs here:
   there is no `update:hugo` script.
 - `npm run approve:hugo` syncs the tree, approves, and regenerates the theme
   manifest; there is no audit to re-run and no rebuild step.
-- CI's `npm ci` runs install scripts, which the approval gate needs; so `.npmrc`
-  leaves `ignore-scripts` unset, unlike Docsy's.
+- `.npmrc` leaves `ignore-scripts` unset, unlike Docsy's: npm checks the
+  `allowScripts` approval only on an install that would run scripts, so CI's
+  `npm ci` must be one for an unapproved hugo-extended bump to fail CI. Docsy
+  can set it because its install re-enables scripts for hugo-extended alone;
+  this repo has no such step.
 
 ### Develop against a local Docsy
 
