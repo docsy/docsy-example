@@ -60,17 +60,23 @@ npm run update:docsy:main
 
 ### Update Hugo
 
-To update Hugo, run `npm run update:hugo`, review the new [hugo-extended][]
-release, then run `npm run approve:hugo`: script-enabled installs fail until the
-new version is approved. The approval gates the install script only (the hugo
-binary self-installs at first use), so don't run builds between the two steps.
-Automated update PRs skip hugo-extended version bumps for the same reason,
-except security updates, which fail CI until approved via `approve:hugo`. A
-release under seven days old is held by the npm cooldown (`min-release-age`,
-`.npmrc`); to take it anyway, run the install with a per-invocation override,
-set no lower than the release's age requires, for example
-`NPM_CONFIG_MIN_RELEASE_AGE=3 npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`
-(`update:hugo` takes no version argument).
+The two-step flow and its rationale are Docsy's ([Officially supported Hugo
+version][]): bump the pin script-free, review the release, then approve the new
+version's install script. What differs here:
+
+- `npm run update:hugo` takes no version: it installs the newest `hugo-extended`
+  release that has passed the npm cooldown (`min-release-age`, `.npmrc`). For a
+  younger release, run the install under a per-invocation override set no lower
+  than the release's age requires, for example
+  `NPM_CONFIG_MIN_RELEASE_AGE=3 npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`.
+- `npm run approve:hugo` approves the version and regenerates the theme
+  manifest; there is no supply-chain audit to re-run and no rebuild step: the
+  hugo binary self-installs at first use.
+- The approval gate fires on CI's `npm ci`, the one install here that runs
+  scripts. That is why `.npmrc` does not set `ignore-scripts`, unlike Docsy's,
+  which re-enables scripts for hugo-extended alone in a rebuild step this repo
+  does not carry. An unapproved bump, a Dependabot security PR included, fails
+  CI until `approve:hugo` is run.
 
 ### Develop against a local Docsy
 
@@ -91,10 +97,10 @@ watches it, so theme edits hot-reload.
 [Dependency updates]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#dependency-updates
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
-[hugo-extended]: https://www.npmjs.com/package/hugo-extended
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
 [Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
+[Officially supported Hugo version]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#official-hugo-version
 [workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
 <!-- prettier-ignore-end -->
 
