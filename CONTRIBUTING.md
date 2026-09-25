@@ -15,7 +15,6 @@ the merge checks, see Docsy's [Dependency updates][]. What differs here:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
-- `hugo-extended` off: the pin follows Docsy's; see [Update Hugo](#update-hugo).
 - Bootstrap and Font Awesome updates arrive through the theme:
   `packages/hugoautogen` is regenerated from it, reverting any direct bump. If a
   Dependabot security PR bumps them directly, close it and route the fix through
@@ -60,23 +59,16 @@ npm run update:docsy:main
 
 ### Update Hugo
 
-The two-step flow and its rationale are Docsy's ([Officially supported Hugo
-version][]): bump the pin script-free, review the release, then approve the new
-version's install script. What differs here:
+The flow is Docsy's ([Officially supported Hugo version][]). What differs here:
 
-- `npm run update:hugo` takes no version: it installs the newest `hugo-extended`
-  release that has passed the npm cooldown (`min-release-age`, `.npmrc`). For a
-  younger release, run the install under a per-invocation override set no lower
-  than the release's age requires, for example
-  `NPM_CONFIG_MIN_RELEASE_AGE=3 npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`.
+- `npm run update:hugo` takes no version: it installs the newest release the npm
+  cooldown admits. Docsy's cooldown override applies, with
+  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z` in
+  place of `update:hugo -- X.Y.Z`.
 - `npm run approve:hugo` approves the version and regenerates the theme
-  manifest; there is no supply-chain audit to re-run and no rebuild step: the
-  hugo binary self-installs at first use.
+  manifest; there is no audit to re-run and no rebuild step.
 - The approval gate fires on CI's `npm ci`, the one install here that runs
-  scripts. That is why `.npmrc` does not set `ignore-scripts`, unlike Docsy's,
-  which re-enables scripts for hugo-extended alone in a rebuild step this repo
-  does not carry. An unapproved bump, a Dependabot security PR included, fails
-  CI until `approve:hugo` is run.
+  scripts; so `.npmrc` sets no `ignore-scripts`, unlike Docsy's.
 
 ### Develop against a local Docsy
 
