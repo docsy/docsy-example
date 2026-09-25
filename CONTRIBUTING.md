@@ -61,9 +61,8 @@ npm run update:docsy:main
 
 The flow is Docsy's ([Officially supported Hugo version][]). What differs here:
 
-- The bump is the plain command,
-  `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
-  there is no `update:hugo` script.
+- `npm run update:hugo` pins the newest release the npm cooldown admits;
+  `--hugo=X.Y.Z` names one.
 - `npm run approve:hugo` approves the version and regenerates the theme
   manifest; there is no audit to re-run and no rebuild step.
 - The approval gate fires on CI's `npm ci`, the one install here that runs
