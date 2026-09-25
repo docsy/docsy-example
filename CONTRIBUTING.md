@@ -75,9 +75,9 @@ npm run update:docsy:main
 
 hugo-extended's installer downloads and executes a binary, so every version that
 may run it here carries a recorded maintainer approval (`allowScripts`), and CI
-enforces it: an unapproved bump fails `npm ci` (`strict-allow-scripts`, in
-`.npmrc`). The two-step flow that keeps the approval current is Docsy's
-([Officially supported Hugo version][]). What differs here:
+enforces it: an unapproved bump fails `npm ci`. The two-step flow that keeps the
+approval current is Docsy's ([Officially supported Hugo version][]). What
+differs here:
 
 - The bump is the plain command,
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
