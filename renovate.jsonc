@@ -22,9 +22,8 @@
       "matchManagers": ["!github-actions"],
     },
     {
-      // Runner labels (runs-on) are github-actions deps too, with no Releases
-      // to look up.
       "matchManagers": ["github-actions"],
+      // Exclude "runs-on" labels: they have no releases to look up.
       "matchDepTypes": ["action", "workflow"],
       "overrideDatasource": "github-releases",
       "branchTopic": "{{{depNameSanitized}}}-{{{newDigest}}}",
