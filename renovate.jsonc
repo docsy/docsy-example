@@ -6,7 +6,7 @@
   "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "lockFileMaintenance": { "enabled": false },
   "schedule": ["* * * * 0"],
-  "timezone": "UTC", // Pin for consistency rather than host's zone
+  "timezone": "UTC",
   "labels": ["dependencies"],
   "gomod": { "enabled": false },
   "minimumReleaseAge": "7 days",
