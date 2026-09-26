@@ -14,7 +14,8 @@ requirements, and the action-bump merge checks, see Docsy's [Dependency
 updates][]. What differs here:
 
 - The `gomod` manager is disabled; Docsy is [updated manually](#upgrade-docsy).
-- `hugo-extended` is updated manually, see [Update Hugo](#update-hugo).
+- `hugo-extended` tracks Docsy's version rather than the latest release; see
+  [Update Hugo](#update-hugo).
 - `packages/hugoautogen` is regenerated from the theme, reverting any direct
   Bootstrap or Font Awesome bump. If a security PR bumps them directly, route
   the fix through a [Docsy update](#upgrade-docsy).
@@ -51,9 +52,9 @@ result. The manifests declare no lifecycle hooks (guarded by
   [Update Hugo](#update-hugo) runs only on an install that runs scripts, and
   this repo needs one to exist.
   - Here, CI's `npm ci` is that install, and so is a plain `npm install` unless
-    a user-level `ignore-scripts` is set; either runs hugo-extended's installer
-    and needs network access. `npm run install:safe` runs no scripts, so unlike
-    in Docsy's flow it never fails on a missing approval.
+    a user-level `ignore-scripts` is set; either runs hugo-extended's installer.
+    `npm run install:safe` runs no scripts, so unlike in Docsy's flow it never
+    fails on a missing approval.
   - Docsy can set the key because its `install:safe` re-enables scripts for
     hugo-extended alone, in a rebuild step ([officially supported version][]),
     so its CI still evaluates the allowlist; this repo's `install:safe` has no
@@ -85,10 +86,9 @@ only; the binary self-installs at first use regardless. The two-step flow that
 keeps the approval current is [Docsy's][officially supported version]. What
 differs here:
 
-- The version tracks Docsy's [officially supported version][] (a site generated
-  from this template sets its own). If a security PR bumps it, take the fix
-  through Docsy instead: once Docsy pins a version carrying it, update to that
-  version with the command below, then approve.
+- The version tracks Docsy's [officially supported version][]. If a security PR
+  bumps it, take the fix through Docsy instead: once Docsy pins a version
+  carrying it, update to that version with the command below, then approve.
 - Update using
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   this repo has no `update:hugo` script. For a release younger than the npm
