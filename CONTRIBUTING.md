@@ -13,12 +13,11 @@ For the Renovate settings shared with Docsy and their rationale, the action-pin
 requirements, and the action-bump merge checks, see Docsy's [Dependency
 updates][]. What differs here:
 
-- `gomod` is updated manually, see [Upgrade Docsy](#upgrade-docsy).
+- The `gomod` manager is disabled; Docsy is [updated manually](#upgrade-docsy).
 - `hugo-extended` is updated manually, see [Update Hugo](#update-hugo).
 - `packages/hugoautogen` is regenerated from the theme, reverting any direct
-  Bootstrap or Font Awesome bump. If a Dependabot security PR bumps them
-  directly, close it and route the fix through a theme update
-  ([Upgrade Docsy](#upgrade-docsy)).
+  Bootstrap or Font Awesome bump. If a security PR bumps them directly, route
+  the fix through a [Docsy update](#upgrade-docsy).
 - No audit test guards the action-pin comments here; the PR reviewer checks
   them.
 
