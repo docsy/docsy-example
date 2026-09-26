@@ -23,7 +23,8 @@
     },
     {
       "matchManagers": ["github-actions"],
-      // Exclude "runs-on" labels: they have no releases to look up.
+      // Not runner labels (runs-on): they aren't repositories, so a Releases
+      // lookup has nothing to find.
       "matchDepTypes": ["action", "workflow"],
       "overrideDatasource": "github-releases",
       "branchTopic": "{{{depNameSanitized}}}-{{{newDigest}}}",
@@ -37,5 +38,5 @@
       "enabled": false,
     },
   ],
-  // cSpell:ignore gomod hugo fortawesome fontawesome
+  // cSpell:ignore datasource hugo fortawesome fontawesome
 }

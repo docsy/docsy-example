@@ -27,6 +27,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # Scripts on: the one automated install that evaluates allowScripts
+      # (CONTRIBUTING.md#install-configuration).
       - run: npm ci
 
       - name: Regenerate generated files (drift-check input)
