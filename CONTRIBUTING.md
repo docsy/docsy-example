@@ -15,10 +15,11 @@ updates][]. What differs here:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
-- Bootstrap and Font Awesome updates arrive through the theme:
-  `packages/hugoautogen` is regenerated from it, reverting any direct bump. If a
-  Dependabot security PR bumps them directly, close it and route the fix through
-  a theme update ([Upgrade Docsy](#upgrade-docsy)).
+- `hugo-extended` off: see [Update Hugo](#update-hugo).
+- `packages/hugoautogen` is regenerated from the theme, reverting any direct
+  Bootstrap or Font Awesome bump. If a Dependabot security PR bumps them
+  directly, close it and route the fix through a theme update
+  ([Upgrade Docsy](#upgrade-docsy)).
 - No audit test guards the action-pin comments here; the PR reviewer checks
   them.
 
@@ -51,12 +52,14 @@ rewrite the lock.
 - No `ignore-scripts=true`: the `allowScripts` check in
   [Update Hugo](#update-hugo) runs only on an install that runs scripts, and
   this repo needs one to exist.
-  - Here, CI's `npm ci` is that install; so is a plain `npm install`, which
-    therefore runs hugo-extended's installer and needs network access.
+  - Here, CI's `npm ci` is that install, and so is a plain `npm install` unless
+    a user-level `ignore-scripts` is set; either runs hugo-extended's installer
+    and needs network access. `npm run install:safe` runs no scripts, so unlike
+    in Docsy's flow it never fails on a missing approval.
   - Docsy can set the key because its approval flow re-enables scripts for
-    hugo-extended alone, in a rebuild step this repo does not carry.
-  - With the key set, an unapproved hugo-extended bump would arrive with a green
-    `check-links`.
+    hugo-extended alone ([Update Hugo](#update-hugo)).
+  - With the key set, a lock-synced hugo-extended bump with no approval would
+    arrive with a green `check-links`.
 
 ### Upgrade Docsy
 
@@ -80,16 +83,18 @@ without one: `npm ci` fails. The approval covers the install script only; the
 binary self-installs at first use regardless. The two-step flow that keeps the
 approval current is [Docsy's][officially supported version]. What differs here:
 
-- The version tracks Docsy's [officially supported version][]. Approve a
-  Dependabot security bump only if Docsy has moved or is about to; otherwise
-  route it through Docsy first.
+- The version tracks Docsy's [officially supported version][] (a site generated
+  from this template sets its own). Close a Dependabot security PR for
+  hugo-extended; update to the version Docsy pins, with the command below, then
+  approve.
 - Update using
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   this repo has no `update:hugo` script. For a release younger than the npm
   cooldown, add Docsy's [`NPM_CONFIG_MIN_RELEASE_AGE`
   override][Dependency updates] to that command.
 - `npm run approve:hugo` has no audit to re-run and no rebuild step; instead it
-  ends by regenerating the manifest ([Lockfile and generated manifest][]).
+  ends by regenerating the lockfile and the manifest ([Lockfile and generated
+  manifest][]).
 
 ### Develop against a local Docsy
 

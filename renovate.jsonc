@@ -34,7 +34,6 @@
       "enabled": false,
     },
     {
-      // Updates through Docsy.
       "matchPackageNames": ["bootstrap", "@fortawesome/fontawesome-free"],
       "enabled": false,
     },
