@@ -81,10 +81,10 @@ without one: `npm ci` fails. The approval covers the install script only; the
 binary self-installs at first use regardless. The two-step flow that keeps the
 approval current is Docsy's. What differs here:
 
-- The pin tracks Docsy's [officially supported version][]. Approve a Dependabot
-  security bump only if Docsy has moved or is about to; otherwise route it
-  through Docsy first. Until approved, the bump fails `npm ci`.
-- Update the pin with
+- The version tracks Docsy's [officially supported version][]. Approve a
+  Dependabot security bump only if Docsy has moved or is about to; otherwise
+  route it through Docsy first. Until approved, the bump fails `npm ci`.
+- Update using
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   this repo has no `update:hugo` script. For a release younger than the npm
   cooldown, add Docsy's [`NPM_CONFIG_MIN_RELEASE_AGE`
