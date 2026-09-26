@@ -23,8 +23,7 @@
     },
     {
       "matchManagers": ["github-actions"],
-      // Not runner labels (runs-on): they aren't repositories, so a Releases
-      // lookup has nothing to find.
+      // Not "runs-on" labels: they have no releases to look up.
       "matchDepTypes": ["action", "workflow"],
       "overrideDatasource": "github-releases",
       "branchTopic": "{{{depNameSanitized}}}-{{{newDigest}}}",
