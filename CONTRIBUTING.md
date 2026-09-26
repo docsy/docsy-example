@@ -78,17 +78,16 @@ hugo-extended's installer downloads and executes a binary. Every pinned version
 has a maintainer approval on record (`allowScripts`), and CI flags a bump
 without one: `npm ci` fails. The approval covers the install script only; the
 binary self-installs at first use regardless. The two-step flow that keeps the
-approval current is Docsy's. What differs here:
+approval current is [Docsy's][officially supported version]. What differs here:
 
 - The version tracks Docsy's [officially supported version][]. Approve a
   Dependabot security bump only if Docsy has moved or is about to; otherwise
-  route it through Docsy first. Until approved, the bump fails `npm ci`.
+  route it through Docsy first.
 - Update using
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   this repo has no `update:hugo` script. For a release younger than the npm
   cooldown, add Docsy's [`NPM_CONFIG_MIN_RELEASE_AGE`
-  override][Dependency updates] to that command, set no higher than the
-  release's age in whole days.
+  override][Dependency updates] to that command.
 - `npm run approve:hugo` has no audit to re-run and no rebuild step; instead it
   ends by regenerating the manifest ([Lockfile and generated manifest][]).
 
@@ -112,10 +111,10 @@ watches it, so theme edits hot-reload.
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
+[Lockfile and generated manifest]: #lockfile-and-generated-manifest
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
 [Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
 [officially supported version]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#official-hugo-version
-[Lockfile and generated manifest]: #lockfile-and-generated-manifest
 [workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
 <!-- prettier-ignore-end -->
 

@@ -5,7 +5,7 @@
   // CONTRIBUTING.md#dependency-updates
   "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "lockFileMaintenance": { "enabled": false },
-  "schedule": ["* * * * 0"], // Sunday
+  "schedule": ["* * * * 0"],
   "timezone": "UTC", // Pin for consistency rather than host's zone
   "labels": ["dependencies"],
   "gomod": { "enabled": false },
