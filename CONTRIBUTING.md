@@ -82,9 +82,8 @@ binary self-installs at first use regardless. The two-step flow that keeps the
 approval current is [Docsy's][officially supported version]. What differs here:
 
 - The version tracks Docsy's [officially supported version][] (a site generated
-  from this template sets its own). Close a Dependabot security PR for
-  hugo-extended; update to the version Docsy pins, with the command below, then
-  approve.
+  from this template sets its own). If a security PR bumps it, update to the
+  version Docsy pins instead, with the command below, then approve.
 - Update using
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`;
   this repo has no `update:hugo` script. For a release younger than the npm
