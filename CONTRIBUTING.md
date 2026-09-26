@@ -10,8 +10,8 @@ repo's [main ruleset][] mirrors Docsy's).
 ### Dependency updates
 
 For the Renovate settings shared with Docsy and their rationale, the action-pin
-requirements, and the merge checks, see Docsy's [Dependency updates][]. What
-differs in `renovate.jsonc`:
+requirements, and the action-bump merge checks, see Docsy's [Dependency
+updates][]. What differs here:
 
 - `gomod` off: the Docsy theme pin is updated manually; see
   [Upgrade Docsy](#upgrade-docsy).
@@ -51,13 +51,13 @@ rewrite the lock.
 - Docsy sets `ignore-scripts=true`; this repo does not. npm checks
   `allowScripts` approvals only on an install that would run scripts. If this
   repo set `ignore-scripts=true`, no check would run anywhere and a
-  hugo-extended bump with no approval on record would merge green: the property
-  in [Update Hugo](#update-hugo) would be lost. Docsy keeps the property under
-  `ignore-scripts=true` because its install re-enables scripts for hugo-extended
-  alone, in a rebuild step this repo does not carry; here, CI's `npm ci` is the
-  script-enabled install where the check runs. So is a plain `npm install`,
-  which therefore runs hugo-extended's installer and needs network access;
-  `npm run install:safe` runs no scripts.
+  hugo-extended bump with no approval on record would arrive with a green
+  `check-links`: the review record in [Update Hugo](#update-hugo) would be lost.
+  Docsy keeps it through the rebuild step of its approval flow ([Officially
+  supported Hugo version][]), which this repo does not carry; here, CI's
+  `npm ci` is the script-enabled install where the check runs. So is a plain
+  `npm install`, which therefore runs hugo-extended's installer and needs
+  network access.
 
 ### Upgrade Docsy
 
@@ -75,20 +75,23 @@ npm run update:docsy:main
 
 ### Update Hugo
 
-hugo-extended's installer downloads and executes a binary, so every version that
-may run it here carries a recorded maintainer approval (`allowScripts`), and CI
-enforces it: an unapproved bump fails `npm ci`. The two-step flow that keeps the
+hugo-extended's installer downloads and executes a binary. Every pinned version
+has a maintainer approval on record (`allowScripts`), and CI flags a bump
+without one: `npm ci` fails. The approval covers the install script only; the
+binary self-installs at first use regardless. The two-step flow that keeps the
 approval current is Docsy's ([Officially supported Hugo version][]). What
 differs here:
 
 - The pin tracks Docsy's officially supported version, not an independent
-  latest; Renovate does not propose hugo-extended bumps.
-- No `update:hugo` script; the bump is
+  latest. A Dependabot security PR that bumps it fails `npm ci` until the bump
+  is approved.
+- No `update:hugo` script: the bump is
   `npm install --save-dev --save-exact --ignore-scripts hugo-extended@X.Y.Z`. A
-  release younger than the npm cooldown needs `NPM_CONFIG_MIN_RELEASE_AGE` set
-  to its age on that command.
-- `npm run approve:hugo` has no audit to re-run and no rebuild step; it syncs
-  the tree first, then approves and regenerates the manifest
+  release younger than the npm cooldown takes Docsy's
+  [`NPM_CONFIG_MIN_RELEASE_AGE` override][Dependency updates] on that command,
+  set no higher than the release's age in whole days.
+- `npm run approve:hugo` has no audit to re-run and no rebuild step; instead it
+  ends by regenerating the manifest
   ([Lockfile and generated manifest](#lockfile-and-generated-manifest)).
 
 ### Develop against a local Docsy

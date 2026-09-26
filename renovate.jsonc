@@ -5,7 +5,9 @@
   // CONTRIBUTING.md#dependency-updates
   "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "lockFileMaintenance": { "enabled": false },
-  "timezone": "UTC", // The schedule runs in the evaluator host's zone otherwise.
+  // Unset, the cron is evaluated in the zone of the host running Renovate;
+  // Renovate's docs say UTC. Pin it.
+  "timezone": "UTC",
   "schedule": ["* * * * 0"], // Sunday
   "labels": ["dependencies"],
   "gomod": { "enabled": false },
