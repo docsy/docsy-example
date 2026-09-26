@@ -1,4 +1,4 @@
-version: '0.2'
+version: "0.2"
 caseSensitive: true
 words:
   - chalin
@@ -8,4 +8,6 @@ words:
   - github
   - gohugoio
   - Goldydocs
+  - gomod
+  - hugoautogen
   - pageinfo
