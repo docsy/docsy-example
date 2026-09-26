@@ -48,16 +48,15 @@ rewrite the lock.
 `.npmrc` follows Docsy's, with two exceptions:
 
 - No `@docsy:registry` pin: this repo publishes no packages.
-- Docsy sets `ignore-scripts=true`; this repo does not. npm checks
-  `allowScripts` approvals only on an install that would run scripts. If this
-  repo set `ignore-scripts=true`, no check would run anywhere and a
-  hugo-extended bump with no approval on record would arrive with a green
-  `check-links`: the review record in [Update Hugo](#update-hugo) would be lost.
-  Docsy keeps it through the rebuild step of its approval flow ([Officially
-  supported Hugo version][]), which this repo does not carry; here, CI's
-  `npm ci` is the script-enabled install where the check runs. So is a plain
-  `npm install`, which therefore runs hugo-extended's installer and needs
-  network access.
+- No `ignore-scripts=true`: the `allowScripts` check in
+  [Update Hugo](#update-hugo) runs only on an install that runs scripts, and
+  this repo needs one to exist.
+  - Here, CI's `npm ci` is that install; so is a plain `npm install`, which
+    therefore runs hugo-extended's installer and needs network access.
+  - Docsy can set the key because its approval flow re-enables scripts for
+    hugo-extended alone, in a rebuild step this repo does not carry.
+  - With the key set, an unapproved hugo-extended bump would arrive with a green
+    `check-links`.
 
 ### Upgrade Docsy
 
