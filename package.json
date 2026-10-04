@@ -64,7 +64,7 @@
   },
   "optionalDependencies": {
     "npm-check-updates": "23.1.0",
-    "prettier": "3.9.6"
+    "prettier": "3.9.9"
   },
   "overrides": {
     "adm-zip": "0.6.1"
