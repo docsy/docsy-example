@@ -17,7 +17,7 @@
     "_check:links": "lychee-norm-cache",
     "_commit:public": "HASH=$(git rev-parse --short main); cd public && git add -A && git commit --allow-empty -m \"Site at $HASH\"",
     "_diff:check": "git diff --name-only --exit-code",
-    "_get:docsy": "hugo mod get github.com/google/docsy/theme@v$npm_package_version",
+    "_get:docsy": "hugo mod get github.com/docsy/docsy/theme@v$npm_package_version",
     "_hugo-dev": "npm run _hugo -- -e dev --logLevel info -DFE",
     "_hugo": "hugo --cleanDestinationDir",
     "_is:clean": "bash -c 'o=$(git status --porcelain -uall) && { echo \"$o\"; [ -z \"$o\" ]; }'",
@@ -48,8 +48,8 @@
     "test-only": "npm run check:links && npm run test:site",
     "test:site": "node --test 'tests/**/*.test.mjs'",
     "test": "npm run test-and-fix",
-    "update:docsy:main": "hugo mod get -u github.com/google/docsy/theme@main && npm run _update:docsy:post",
-    "update:docsy:mod": "hugo mod get -u github.com/google/docsy/theme && npm run _update:docsy:post",
+    "update:docsy:main": "hugo mod get -u github.com/docsy/docsy/theme@main && npm run _update:docsy:post",
+    "update:docsy:mod": "hugo mod get -u github.com/docsy/docsy/theme && npm run _update:docsy:post",
     "update:docsy:pack": "hugo mod npm pack && npm pkg set 'name=\"@docsy/hugoautogen\"' private=true --json --prefix packages/hugoautogen && npm install --ignore-scripts",
     "update:main": "npm run update:packages && npm run update:docsy:main",
     "update:packages": "npm-check-updates -u -x hugo-extended",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "autoprefixer": "10.6.1",
     "cross-env": "10.1.0",
-    "hugo-extended": "0.164.0",
+    "hugo-extended": "0.166.0",
     "link-cache": "0.6.0",
     "postcss-cli": "12.0.0",
     "rtlcss": "4.3.0",
@@ -77,7 +77,7 @@
   },
   "allowScripts": {
     "@parcel/watcher": false,
-    "hugo-extended@0.164.0": true
+    "hugo-extended@0.166.0": true
   },
   "private": true,
   "prettier": {

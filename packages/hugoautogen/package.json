@@ -4,6 +4,6 @@
     "bootstrap": "5.3.8"
   },
   "name": "@docsy/hugoautogen",
-  "version": "0.1.0",
-  "private": true
+  "private": true,
+  "version": "0.1.0"
 }
