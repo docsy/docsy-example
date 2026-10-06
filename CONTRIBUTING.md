@@ -122,11 +122,10 @@ differs here:
 
 - The cache and `lychee.toml` are at the repo root; the `links.yaml` workflow
   fails if a check changes the committed cache.
-- No refresh workflow: a 2xx entry without `expires` is re-verified once older
-  than `max_cache_age`, but an entry with `expires` keeps serving until pruned,
-  even after it lapses. To prune by hand, run `npm run link-cache -- -p 0`
-  (drops only lapsed entries; `-p N` also drops the N oldest without `expires`),
-  then `npm run fix:link-cache` to re-verify those URLs, and commit the cache.
+- No refresh workflow, so nothing prunes on a schedule. To prune by hand, run
+  `npm run link-cache -- -p 0` (drops only lapsed entries; `-p N` also drops the
+  N oldest without `expires`), then `npm run fix:link-cache` to re-verify those
+  URLs, and commit the cache.
 
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
