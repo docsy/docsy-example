@@ -114,6 +114,22 @@ npm run local -- serve
 The `local` prefix runs the script against the sibling Docsy, and the server
 watches it, so theme edits hot-reload.
 
+### Link checking
+
+For the link cache (the committed `link-cache.jsonc`, its fields, and the seed
+and prune recipes), see Docsy's [Link checking and the link cache][]. What
+differs here:
+
+- The cache, `lychee.toml`, and the scripts are at the repo root.
+  `npm run check:links` builds the site, checks links, and updates the cache
+  (Docsy's `fix:link-cache`); the `links.yaml` workflow fails if that changes
+  the committed cache.
+- No refresh workflow: cached results are re-verified only once older than
+  `max_cache_age`, and lapsed seeds stay until pruned. To prune by hand, run
+  `npm run link-cache -- -p 0` (drops only lapsed entries; `-p N` also drops the
+  N oldest of the rest), then `npm run check:links` to re-verify those URLs, and
+  commit the cache.
+
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
 [contribution guidelines]: https://main--docsydocs.netlify.app/docs/contributing/
@@ -121,6 +137,7 @@ watches it, so theme edits hot-reload.
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
 [Docsy]: https://github.com/docsy/docsy
 [Hugo workspace]: https://gohugo.io/configuration/module/#top-level-settings
+[Link checking and the link cache]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#link-checking-and-the-link-cache
 [Lockfile and generated manifest]: #lockfile-and-generated-manifest
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
 [Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
