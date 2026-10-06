@@ -23,7 +23,7 @@ the README, or include them in both locations.
 {{% /pageinfo %}}
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the
-[Docsy](https://github.com/google/docsy) theme for styling and site structure,
+[Docsy](https://github.com/docsy/docsy) theme for styling and site structure,
 and [Netlify](https://www.netlify.com/) to manage the deployment of the site.
 Hugo is an open-source static site generator that provides us with templates,
 content organisation in a standard directory structure, and a website generation
@@ -41,7 +41,7 @@ Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
-1. Fork the [Goldydocs repo](https://github.com/google/docsy-example) on GitHub.
+1. Fork the [Goldydocs repo](https://github.com/docsy/docsy-example) on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add "WIP" to the PR name to indicate
    it's a work in progress. (**Don't** add the Hugo property "draft = true" to
@@ -78,11 +78,11 @@ work:
    install Hugo and any other tools you need. You'll need at least **Hugo
    version 0.146.0** (we recommend using the most recent available version), and
    it must be the **extended** version, which supports SCSS.
-1. Fork the [Goldydocs repo](https://github.com/google/docsy-example) repo into
+1. Fork the [Goldydocs repo](https://github.com/docsy/docsy-example) repo into
    your own project, then create a local copy using `git clone`.
 
    ```sh
-   git clone --branch v0.12.0 --depth 1 https://github.com/google/docsy-example.git
+   git clone --branch v0.12.0 --depth 1 https://github.com/docsy/docsy-example.git
    ```
 
 1. Run `hugo server` in the site root directory. By default your site will be
@@ -96,7 +96,7 @@ work:
 
 If you've found a problem in the docs, but you're not sure how to fix it
 yourself, please create an issue in the
-[Goldydocs repo](https://github.com/google/docsy-example/issues). You can also
+[Goldydocs repo](https://github.com/docsy/docsy-example/issues). You can also
 create an issue about a specific page by clicking the **Create Issue** button in
 the top right hand corner of the page.
 

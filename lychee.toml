@@ -22,9 +22,9 @@ exclude = [
   # Docsy page-meta links
   '^https?://github\.com/.*?/.*?/(new|edit)/',                     # view/edit-source links
   '^https://github\.com/[^/]+/[^/]+/issues/new',                   # per-page "create issue" feedback links
-  '^https://github\.com/google/docsy-example/commit/',             # per-page provenance links
-  '^https://github\.com/google/docsy-example/tree/main/content/',  # view-source tree links
+  '^https://github\.com/docsy/docsy-example/commit/',             # per-page provenance links
+  '^https://github\.com/docsy/docsy-example/tree/main/content/',  # view-source tree links
 
-  '^https://github\.com/google/docsy/releases/v[\d.]+-dev',  # non-existent -dev releases
+  '^https://github\.com/docsy/docsy/releases/v[\d.]+-dev',  # non-existent -dev releases
   '^https://github\.com/USERNAME/REPOSITORY',                # user guide placeholder repo
 ]

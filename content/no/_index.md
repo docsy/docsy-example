@@ -53,11 +53,11 @@ Følg med her for oppdateringer!
 
 {{% blocks/feature
   title="Bidrag er velkomne!" icon="fab fa-github"
-  url="https://github.com/google/docsy-example"
+  url="https://github.com/docsy/docsy-example"
 %}}
 
 Vi bruker
-[Pull Request](https://github.com/google/docsy-example/pulls)-arbeidsflyt på
+[Pull Request](https://github.com/docsy/docsy-example/pulls)-arbeidsflyt på
 **GitHub**. Nye brukere er alltid velkomne!
 
 {{% /blocks/feature %}}

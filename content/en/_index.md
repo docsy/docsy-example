@@ -61,10 +61,10 @@ Please follow this space for updates!
 
 {{% blocks/feature
   title="Contributions welcome!" icon="fab fa-github"
-  url="https://github.com/google/docsy-example"
+  url="https://github.com/docsy/docsy-example"
 %}}
 
-We do a [Pull Request](https://github.com/google/docsy-example/pulls)
+We do a [Pull Request](https://github.com/docsy/docsy-example/pulls)
 contributions workflow on **GitHub**. New users are always welcome!
 
 {{% /blocks/feature %}}

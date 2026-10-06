@@ -53,10 +53,10 @@ description: ارزیابی درجه حرارت فرنی &mdash; در فضای �
 
 {{% blocks/feature
   title="همکاری" icon="fab fa-github"
-  url="https://github.com/google/docsy-example"
+  url="https://github.com/docsy/docsy-example"
 %}}
 
-ما یک فرآیند [پول ریکوئست](https://github.com/google/docsy-example/pulls) در **گیتهاب** داریم. ما همیشه از همکاران جدید
+ما یک فرآیند [پول ریکوئست](https://github.com/docsy/docsy-example/pulls) در **گیتهاب** داریم. ما همیشه از همکاران جدید
 خوشحال می‌شویم.
 
 {{% /blocks/feature %}}
