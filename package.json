@@ -38,6 +38,7 @@
     "fix:format": "npm run _check:format -- --write",
     "fix": "npm run fix:format",
     "install:safe": "npm ci --ignore-scripts",
+    "link-cache": "link-cache",
     "local": "npm run _local -- npm run",
     "make:public": "git init -b main public",
     "seq": "bash -c 'for cmd in \"$@\"; do npm run $cmd || exit 1; done' - ",
@@ -57,7 +58,7 @@
     "autoprefixer": "10.5.4",
     "cross-env": "10.1.0",
     "hugo-extended": "0.164.0",
-    "link-cache": "0.5.0",
+    "link-cache": "0.6.0",
     "postcss-cli": "11.0.1",
     "rtlcss": "4.3.0",
     "sass-embedded": "1.103.1"
