@@ -69,11 +69,11 @@
     "prettier": "3.9.9"
   },
   "overrides": {
-    "adm-zip": "0.6.1"
+    "adm-zip": "^0.6.1"
   },
   "engines": {
     "node": ">=24",
-    "npm": ">=11.16.0"
+    "npm": ">=11.18.0"
   },
   "allowScripts": {
     "@parcel/watcher": false,
