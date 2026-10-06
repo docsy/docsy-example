@@ -1,12 +1,12 @@
 {
   "name": "docsy-example-site",
-  "version": "0.17.1-dev+006-over-main-2c44726e",
+  "version": "0.17.1-dev+060-over-main-64411422",
   "description": "Example site that uses Docsy theme for technical documentation.",
-  "repository": "github:google/docsy-example",
+  "repository": "github:docsy/docsy-example",
   "homepage": "https://example.docsy.dev",
   "author": "Docsy Authors",
   "license": "Apache-2.0",
-  "bugs": "https://github.com/google/docsy-example/issues",
+  "bugs": "https://github.com/docsy/docsy-example/issues",
   "spelling": "cSpell:ignore docsy hugo rtlcss -",
   "workspaces": [
     "packages/hugoautogen"
