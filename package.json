@@ -36,6 +36,7 @@
     "clean": "rm -Rf public/* resources",
     "fix:format:diff": "npm run fix:format",
     "fix:format": "npm run _check:format -- --write",
+    "fix:link-cache": "npm run check:links",
     "fix": "npm run fix:format",
     "install:safe": "npm ci --ignore-scripts",
     "link-cache": "link-cache",

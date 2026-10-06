@@ -120,15 +120,13 @@ For the link cache (the committed `link-cache.jsonc`, its fields, and the seed
 and prune recipes), see Docsy's [Link checking and the link cache][]. What
 differs here:
 
-- The cache, `lychee.toml`, and the scripts are at the repo root.
-  `npm run check:links` builds the site, checks links, and updates the cache
-  (Docsy's `fix:link-cache`); the `links.yaml` workflow fails if that changes
-  the committed cache.
-- No refresh workflow: cached results are re-verified only once older than
-  `max_cache_age`, and lapsed seeds stay until pruned. To prune by hand, run
-  `npm run link-cache -- -p 0` (drops only lapsed entries; `-p N` also drops the
-  N oldest of the rest), then `npm run check:links` to re-verify those URLs, and
-  commit the cache.
+- The cache and `lychee.toml` are at the repo root; the `links.yaml` workflow
+  fails if a check changes the committed cache.
+- No refresh workflow: a 2xx entry without `expires` is re-verified once older
+  than `max_cache_age`, but an entry with `expires` keeps serving until pruned,
+  even after it lapses. To prune by hand, run `npm run link-cache -- -p 0`
+  (drops only lapsed entries; `-p N` also drops the N oldest without `expires`),
+  then `npm run fix:link-cache` to re-verify those URLs, and commit the cache.
 
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
