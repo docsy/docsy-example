@@ -349,6 +349,31 @@
     "when": "2026-06-29T20:57:57Z",
     "via": "lychee",
   },
+  "https://github.com/docsy/docsy": {
+    "result": 200,
+    "when": "2026-10-06T23:08:57Z",
+    "via": "lychee",
+  },
+  "https://github.com/docsy/docsy-example": {
+    "result": 200,
+    "when": "2026-10-06T23:08:57Z",
+    "via": "lychee",
+  },
+  "https://github.com/docsy/docsy-example/issues": {
+    "result": 200,
+    "when": "2026-10-06T23:08:57Z",
+    "via": "lychee",
+  },
+  "https://github.com/docsy/docsy-example/pulls": {
+    "result": 200,
+    "when": "2026-10-06T23:08:57Z",
+    "via": "lychee",
+  },
+  "https://github.com/docsy/docsy/tree/main/docsy.dev": {
+    "result": 200,
+    "when": "2026-10-06T23:08:57Z",
+    "via": "lychee",
+  },
   "https://github.com/google/docsy": {
     "result": 200,
     "when": "2026-06-29T20:57:56Z",
