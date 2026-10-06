@@ -116,16 +116,16 @@ watches it, so theme edits hot-reload.
 
 ### Link checking
 
-For the link cache (the committed `link-cache.jsonc`, its fields, and the seed
-and prune recipes), see Docsy's [Link checking and the link cache][]. What
-differs here:
+For the link cache (the committed `link-cache.jsonc`, its fields, and the
+refresh, prune, and seed recipes), see Docsy's [Link checking and the link
+cache][]. What differs here:
 
 - The cache and `lychee.toml` are at the repo root, and CI runs the check in
-  `links.yaml`.
-- No refresh workflow, so a lapsed seed keeps serving until you prune by hand:
-  run `npm run link-cache -- -p 0` (drops only lapsed entries; `-p N` also drops
-  the N oldest without `expires`), then `npm run fix:link-cache` to re-verify
-  those URLs, and commit the cache.
+  `.github/workflows/links.yaml`.
+- No refresh workflow: a lapsed seed keeps serving until you prune by hand. Run
+  `npm run link-cache -- -p 0` (drops only lapsed entries; `-p N` also drops the
+  N oldest without `expires`), then `npm run fix:link-cache` to re-verify those
+  URLs, and commit the cache.
 
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
