@@ -78,8 +78,8 @@ work:
    install Hugo and any other tools you need. You'll need at least **Hugo
    version 0.146.0** (we recommend using the most recent available version), and
    it must be the **extended** version, which supports SCSS.
-1. Fork the [Goldydocs repo](https://github.com/docsy/docsy-example) repo into
-   your own project, then create a local copy using `git clone`.
+1. Fork the [Goldydocs repo](https://github.com/docsy/docsy-example) into your
+   own project, then create a local copy using `git clone`.
 
    ```sh
    git clone --branch v0.12.0 --depth 1 https://github.com/docsy/docsy-example.git
