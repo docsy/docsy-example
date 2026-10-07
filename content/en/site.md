@@ -1,6 +1,6 @@
 ---
 title: Website information
-likeTitle: Site info
+linkTitle: Site info
 description: Information about the website.
 type: docs
 params:
