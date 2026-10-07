@@ -93,12 +93,16 @@ markup:
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
     # guessSyntax: true
 
-# Everything below this are Site Params
-
-# Comment out if you don't want the "print entire section" link enabled.
+# Output formats per page kind, beyond HTML. Remove `print` to drop the "print
+# entire section" link; `redirects` writes the Netlify `_redirects` file;
+# `markdown` and `LLMS` are Docsy's agent support (Markdown page versions and a
+# per-site llms.txt), see https://www.docsy.dev/docs/content/agent-support/.
 outputs:
-  home: [HTML, print, RSS, redirects, LLMS]
-  section: [HTML, print, RSS]
+  home: [HTML, print, RSS, redirects, markdown, LLMS]
+  page: [HTML, markdown]
+  section: [HTML, print, RSS, markdown]
+
+# Everything below this are Site Params
 
 params:
   taxonomy:
