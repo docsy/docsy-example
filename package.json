@@ -28,7 +28,7 @@
     "approve:hugo": "npm run install:safe && npm approve-scripts --allow-scripts-pin hugo-extended && npm run update:docsy:pack",
     "build:preview": "npm run _hugo-dev -- --minify --baseURL \"${DEPLOY_PRIME_URL:-/}\"",
     "build:production": "npm run _hugo -- --minify",
-    "build": "npm run _build -- ",
+    "build": "cross-env npm run _build -- --baseURL \"${BASE_URL:-http://localhost}\"",
     "check:links:internal": "npm run build && npm run _check:links -- --offline",
     "check:links": "npm run build && npm run _check:links --",
     "ci:prepare": "npm run _get:docsy && hugo mod graph && hugo mod tidy",
