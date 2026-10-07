@@ -97,7 +97,7 @@ markup:
 
 # Comment out if you don't want the "print entire section" link enabled.
 outputs:
-  home: [HTML, print, RSS, redirects]
+  home: [HTML, print, RSS, redirects, LLMS]
   section: [HTML, print, RSS]
 
 params:
