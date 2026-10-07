@@ -15,7 +15,7 @@ enableRobotsTXT: true
 # Will give values to .Lastmod etc.
 enableGitInfo: true
 
-# Comment out to disable taxonomies in Docsy
+# Uncomment to disable taxonomies in Docsy
 # disableKinds: [taxonomy]
 
 # You can add your own taxonomies
@@ -139,8 +139,8 @@ params:
   # Specify a value here if your content directory is not in your repo's root directory
   # github_subdir: ""
 
-  # Uncomment this if your GitHub repo does not have "main" as the default branch,
-  # or specify a new value if you want to reference another branch in your GitHub links
+  # Change this if your GitHub repo does not have "main" as the default branch,
+  # or if you want to reference another branch in your GitHub links
   github_branch: main
 
   # Google Custom Search Engine ID. Remove or comment out to disable search.
