@@ -1,6 +1,6 @@
 {
   "name": "docsy-example-site",
-  "version": "0.17.1-dev+060-over-main-64411422",
+  "version": "0.18.0",
   "description": "Example site that uses Docsy theme for technical documentation.",
   "repository": "github:docsy/docsy-example",
   "homepage": "https://example.docsy.dev",
