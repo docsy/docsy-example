@@ -114,6 +114,19 @@ npm run local -- serve
 The `local` prefix runs the script against the sibling Docsy, and the server
 watches it, so theme edits hot-reload.
 
+### Built-site snapshot
+
+To diff the built site across changes (step 7 of Docsy's [consumer-site test
+procedure][]), keep `public` as a symlink to a sibling git repo,
+`../docsy-example.g`, and commit its contents after each build with
+`npm run _commit:public`. Hugo's Node [permission model][] lets Node tools
+(PostCSS, for the RTL stylesheet) read only the paths listed under
+`security.node.permissions.allowRead`, and rejects a symlink whose target lies
+outside them, so `hugo.yaml` lists the snapshot repo as seen from the primary
+clone and from a task worktree under `wt/docsy-example/`, beside Hugo's default
+`.`, which the list replaces. Another layout adds its own entry; a path that
+doesn't exist is inert.
+
 ### Link checking
 
 For the link cache (the committed `link-cache.jsonc`, its fields, and the
@@ -129,6 +142,7 @@ cache][]. What differs here:
 
 <!-- prettier-ignore-start -->
 [alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
+[consumer-site test procedure]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#consumer-site-test
 [contribution guidelines]: https://main--docsydocs.netlify.app/docs/contributing/
 [Dependency updates]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#dependency-updates
 [deploys]: https://app.netlify.com/sites/docsy-example/deploys
@@ -139,6 +153,7 @@ cache][]. What differs here:
 [main ruleset]: https://github.com/docsy/docsy-example/rules/23697395
 [Merge requirements]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#merge-requirements
 [officially supported version]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#official-hugo-version
+[permission model]: https://gohugo.io/configuration/security/#nodepermissionsallowread
 [workflow security analysis]: https://main--docsydocs.netlify.app/project/about/maintainer-notes/#workflow-security-analysis
 <!-- prettier-ignore-end -->
 
