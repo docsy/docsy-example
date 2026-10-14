@@ -244,6 +244,19 @@ security:
     getenv: # cspell:disable-line
       # Netlify build env var
       - ^(BRANCH|BUILD_ID|COMMIT_REF|CONTEXT|DEPLOY_ID|NETLIFY|PULL_REQUEST|REVIEW_ID)$
+  node:
+    permissions:
+      # Node tools (PostCSS, for the RTL stylesheet) may read only these paths,
+      # and Hugo rejects a symlink under them whose target lies elsewhere.
+      # Maintainers keep `public` as a symlink to a sibling snapshot repo; the
+      # two relative entries name it from the primary clone and from a task
+      # worktree (`wt/docsy-example/TASK`). Entries that don't exist are inert.
+      # `.` is the default and must stay: the npm workspace link under
+      # `node_modules/@docsy` resolves inside the project.
+      allowRead:
+        - .
+        - ../docsy-example.g
+        - ../../../docsy-example.g
 
 module:
   # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
