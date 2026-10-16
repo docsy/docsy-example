@@ -116,17 +116,22 @@ watches it, so theme edits hot-reload.
 
 ### Built-site snapshot
 
-To diff the built site across changes (step 7 of Docsy's [consumer-site test
-procedure][]), keep `public` as a symlink to a sibling git repo,
-`../docsy-example.g`, and commit its contents after each build with
-`npm run _commit:public`. Hugo's Node [permission model][] rejects that symlink
-unless its target is listed under `security.node.permissions.allowRead`
-(PostCSS, for the RTL stylesheet, is the tool that trips it here), so
-`hugo.yaml` lists the snapshot repo as seen from the primary clone and from a
-task worktree under `wt/docsy-example/`. The list replaces Hugo's default, so it
-keeps `.`: the npm workspace link under `node_modules/@docsy` resolves into the
-project and would fail the same check without it. Another layout adds its own
-entry; a path that doesn't exist is inert.
+To diff each build against the last (the A/B diff step of Docsy's [consumer-site
+test procedure][]), keep the built site in a git repo and commit it after each
+build with `npm run _commit:public`. Two layouts:
+
+- `npm run make:public` makes `public/` itself a repo, inside the project; it
+  needs no configuration.
+- Maintainers keep `public` as a symlink to a sibling repo,
+  `../docsy-example.g`, so that the primary clone and its task worktrees
+  (`wt/docsy-example/TASK`, beside the clone) share one snapshot. Hugo's Node
+  [permission model][] rejects a symlink whose target isn't in
+  `security.node.permissions.allowRead`, so `hugo.yaml` lists the snapshot as
+  seen from both places, plus `.` (the npm workspace link under
+  `node_modules/@docsy` resolves into the project and needs it). PostCSS, run
+  for the RTL stylesheet, is the tool that trips the check. From a worktree, the
+  entry is live whether or not `public` is a symlink; an entry whose path
+  doesn't exist is inert, so another layout adds its own.
 
 ### Link checking
 

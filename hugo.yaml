@@ -246,8 +246,9 @@ security:
       - ^(BRANCH|BUILD_ID|COMMIT_REF|CONTEXT|DEPLOY_ID|NETLIFY|PULL_REQUEST|REVIEW_ID)$
   node:
     permissions:
-      # Project root plus the public snapshot symlink's targets; see
-      # CONTRIBUTING.md § Built-site snapshot.
+      # Project root, and the maintainers' snapshot repo as seen from the
+      # primary clone and from a task worktree (CONTRIBUTING.md § Built-site
+      # snapshot); sites made from this template can drop the `node` block.
       allowRead:
         - .
         - ../docsy-example.g
