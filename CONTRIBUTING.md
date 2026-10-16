@@ -122,16 +122,17 @@ build with `npm run _commit:public`. Two layouts:
 
 - `npm run make:public` makes `public/` itself a repo, inside the project; it
   needs no configuration.
-- Maintainers keep `public` as a symlink to a sibling repo,
-  `../docsy-example.g`, so that the primary clone and its task worktrees
-  (`wt/docsy-example/TASK`, beside the clone) share one snapshot. Hugo's Node
-  [permission model][] rejects a symlink whose target isn't in
-  `security.node.permissions.allowRead`, so `hugo.yaml` lists the snapshot as
-  seen from both places, plus `.` (the npm workspace link under
-  `node_modules/@docsy` resolves into the project and needs it). PostCSS, run
-  for the RTL stylesheet, is the tool that trips the check. From a worktree, the
-  entry is live whether or not `public` is a symlink; an entry whose path
-  doesn't exist is inert, so another layout adds its own.
+- Maintainers keep `public` as a symlink to a sibling repo, `docsy-example.g`,
+  so that the primary clone and its task worktrees (`wt/docsy-example/TASK`,
+  beside the clone) share one snapshot. Hugo's Node [permission model][] rejects
+  a symlink whose target isn't in `security.node.permissions.allowRead`, so
+  `hugo.yaml` lists the snapshot as seen from the clone (`../docsy-example.g`)
+  and from a worktree (`../../../docsy-example.g`), plus `.` (the npm workspace
+  link under `node_modules/@docsy` resolves into the project and needs it).
+  PostCSS, run for the RTL stylesheet, is the tool that trips the check. From a
+  worktree, the entry is live whether or not `public` is a symlink; an entry
+  whose path doesn't exist is inert. A snapshot kept elsewhere needs its own
+  entry.
 
 ### Link checking
 
