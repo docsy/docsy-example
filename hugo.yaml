@@ -246,7 +246,8 @@ security:
       - ^(BRANCH|BUILD_ID|COMMIT_REF|CONTEXT|DEPLOY_ID|NETLIFY|PULL_REQUEST|REVIEW_ID)$
   node:
     permissions:
-      # Snapshot symlink targets, see CONTRIBUTING.md § Built-site snapshot.
+      # Project root plus the public snapshot symlink's targets; see
+      # CONTRIBUTING.md § Built-site snapshot.
       allowRead:
         - .
         - ../docsy-example.g

@@ -119,13 +119,14 @@ watches it, so theme edits hot-reload.
 To diff the built site across changes (step 7 of Docsy's [consumer-site test
 procedure][]), keep `public` as a symlink to a sibling git repo,
 `../docsy-example.g`, and commit its contents after each build with
-`npm run _commit:public`. Hugo's Node [permission model][] lets Node tools
-(PostCSS, for the RTL stylesheet) read only the paths listed under
-`security.node.permissions.allowRead`, and rejects a symlink whose target lies
-outside them, so `hugo.yaml` lists the snapshot repo as seen from the primary
-clone and from a task worktree under `wt/docsy-example/`, beside Hugo's default
-`.`, which the list replaces. Another layout adds its own entry; a path that
-doesn't exist is inert.
+`npm run _commit:public`. Hugo's Node [permission model][] rejects that symlink
+unless its target is listed under `security.node.permissions.allowRead`
+(PostCSS, for the RTL stylesheet, is the tool that trips it here), so
+`hugo.yaml` lists the snapshot repo as seen from the primary clone and from a
+task worktree under `wt/docsy-example/`. The list replaces Hugo's default, so it
+keeps `.`: the npm workspace link under `node_modules/@docsy` resolves into the
+project and would fail the same check without it. Another layout adds its own
+entry; a path that doesn't exist is inert.
 
 ### Link checking
 
