@@ -1,4 +1,5 @@
-# Build the example site and check links with Lychee.
+# Build the example site, check its links with Lychee, and guard the npm-script
+# posture and the committed generated files.
 # cSpell:ignore lycheeverse
 
 name: links
