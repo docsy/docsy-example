@@ -60,7 +60,7 @@ result. The manifests declare no lifecycle hooks (guarded by
     so its CI still evaluates the allowlist; this repo's `install:safe` has no
     such step.
   - With the key set, a lock-synced hugo-extended bump with no approval would
-    arrive with a green `check-links`.
+    arrive with a green `Check links`.
   - The Netlify build is script-free (`install:safe`) and then runs `hugo`,
     whose wrapper self-installs the pinned binary: that path checks no approval
     here (Docsy's does, through its rebuild step).

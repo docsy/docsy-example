@@ -10,6 +10,8 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# github.ref: a newer run of the same ref supersedes the one in progress; this
+# workflow only checks, so nothing is lost by cancelling.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
