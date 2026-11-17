@@ -56,7 +56,7 @@
     "update": "npm run update:packages && npm run update:docsy:mod"
   },
   "devDependencies": {
-    "autoprefixer": "10.6.1",
+    "autoprefixer": "10.6.2",
     "cross-env": "10.1.0",
     "hugo-extended": "0.166.0",
     "link-cache": "0.6.0",
