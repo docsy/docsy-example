@@ -15,10 +15,6 @@ GO_VERSION = "1.22.2"
 # and hugoautogen manifest cover the build's needs; the hugo binary
 # self-installs at first use.
 NPM_FLAGS = "--dry-run --ignore-scripts"
-# Netlify's Node-bundled default npm may be older than the engines floor
-# (allowScripts enforcement); pin one that satisfies it. Bump at least
-# when the floor rises.
-NPM_VERSION = "11.19.0"
 
 [context.production]
 command = "npm run _netlify:prepare && npm run build:production"
